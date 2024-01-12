@@ -1,13 +1,17 @@
 import { serialize } from '@jscad/stl-serializer'
-import { cableHolder } from './models/cableHolder.js'
+// modify this line to your file + exported function
+// this is what will be rendered by the server
+import { codefreeze } from './models/trayInfantrySmall.js'
 import { renderModel } from './renderModel.js'
 
 const containerElement = document.getElementById('jscad')
 
-const model = cableHolder()
+// execute you exported function here
+const model = codefreeze()
 
 if (containerElement !== null) renderModel({ containerElement, model })
 
+// open console in browser window and type startDownload()
 const download = async (blob: Blob) => {
 	const file = new File([await blob.arrayBuffer()], `model.stl`)
 	const link = document.createElement('a')
