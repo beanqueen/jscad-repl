@@ -1,7 +1,7 @@
 import { serialize } from '@jscad/stl-serializer'
 // modify this line to your file + exported function
 // this is what will be rendered by the server
-import { codefreeze } from './models/trayInfantrySmall.js'
+import { codefreeze } from './models/trayArtillery.js'
 import { renderModel } from './renderModel.js'
 
 const containerElement = document.getElementById('jscad')
