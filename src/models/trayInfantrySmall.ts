@@ -15,6 +15,12 @@ const countCubes = 6
 const spacing = 1.5
 const defaultTranslateValue = 0
 
+const cubeZ =
+	// move it to Z=0
+	smallCubeDepth / 2 +
+	// and to the top of the base-layer
+	(wallDepth - smallCubeDepth)
+
 export const codefreeze = (): Geom3[] => {
 	const geos: Geom3[] = []
 
@@ -24,24 +30,23 @@ export const codefreeze = (): Geom3[] => {
 		for (let i = 0; i < countCubes; i++) {
 			const translateXAmount = i * (smallCubeSideLength + spacing * 2)
 			const translateYAmount = j * (smallCubeSideLength + spacing * 2)
-			const translateZAmount = wallDepth / 2 + 1.75
 			stamps.push(
 				cuboid({
 					size: [smallCubeSideLength, smallCubeSideLength, smallCubeDepth],
-					center: [translateXAmount, translateYAmount, translateZAmount],
+					center: [translateXAmount, translateYAmount, cubeZ],
 				}),
 			)
 		}
 	}
 	const translateXAmount = -2.5 * (smallCubeSideLength + spacing * 2)
-	const centerZAmount = wallDepth / 2
 	geos.push(
 		colorize(
 			hexToRgb('#1F1C83'),
 			subtract(
+				// this is the base plate
 				cuboid({
 					size: [length, width, wallDepth],
-					center: [defaultTranslateValue, defaultTranslateValue, centerZAmount],
+					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
 				}),
 				translate(
 					[
