@@ -7,7 +7,6 @@ import { cuboid } from '@jscad/modeling/src/primitives'
 const width = 125
 const length = 150
 const wallDepth = 5.25
-const centerZAmount = wallDepth / 2
 
 const cavalrySideLength = 27
 const cavalrySideWidth = 52
@@ -16,7 +15,11 @@ const cavalryDepth = 3.5
 const countCavalry = 5
 const sideSpacing = 1.5
 const defaultTranslateValue = 0
-const heightDifference = 1.75
+const cubeZ =
+	// move it to Z=0
+	cavalryDepth / 2 +
+	// and to the top of the base-layer
+	(wallDepth - cavalryDepth)
 
 export const codefreeze = (): Geom3[] => {
 	const geos: Geom3[] = []
@@ -28,23 +31,23 @@ export const codefreeze = (): Geom3[] => {
 			const translateXAmount = (i - 2) * (cavalrySideLength + sideSpacing * 2)
 			const x = j === 0 ? -cavalrySideWidth / 2 - 6 : -cavalrySideWidth / 2 + 3
 			const translateYAmount = x + j * (cavalrySideWidth + sideSpacing * 2)
-			const translateZAmount = centerZAmount + heightDifference
 			stamps.push(
 				cuboid({
 					size: [cavalrySideLength, cavalrySideWidth, cavalryDepth],
-					center: [translateXAmount, translateYAmount, translateZAmount],
+					center: [translateXAmount, translateYAmount, cubeZ],
 				}),
 			)
 		}
 	}
-	const translateXAmount = 0 //-2.5 * (cavalrySideLength + spacing*2);
+	const translateXAmount = 0
 	geos.push(
 		colorize(
 			hexToRgb('#00FF00'),
 			subtract(
+				// this is the base plate
 				cuboid({
 					size: [length, width, wallDepth],
-					center: [defaultTranslateValue, defaultTranslateValue, centerZAmount],
+					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
 				}),
 				translate(
 					[translateXAmount, defaultTranslateValue, defaultTranslateValue],
