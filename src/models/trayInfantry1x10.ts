@@ -4,16 +4,17 @@ import { subtract, union } from '@jscad/modeling/src/operations/booleans'
 import { translate } from '@jscad/modeling/src/operations/transforms'
 import { cuboid } from '@jscad/modeling/src/primitives'
 
-const width = 125
-const length = 150
+const width = 25
+const length = 250
 const wallDepth = 5.25
 
 const smallCubeSideLength = 20.5
 const smallCubeDepth = 3.5
 
-const countCubes = 6
+const countCubes = 10
 const spacing = 2.25
 const defaultTranslateValue = 0
+
 const cubeZ =
 	// move it to Z=0
 	smallCubeDepth / 2 +
@@ -25,30 +26,34 @@ export const codefreeze = (): Geom3[] => {
 
 	const stamps: Geom3[] = []
 
-	for (let j = -2; j < 3; j++) {
-		for (let i = 0; i < countCubes; i++) {
-			const translateXAmount = i * (smallCubeSideLength + spacing * 2)
-			const translateYAmount = j * (smallCubeSideLength + spacing * 2)
-			stamps.push(
-				cuboid({
-					size: [smallCubeSideLength, smallCubeSideLength, smallCubeDepth],
-					center: [translateXAmount, translateYAmount, cubeZ],
-				}),
-			)
-		}
+	//for (let j = -5; j < 5; j++) {
+	for (let i = 0; i < countCubes; i++) {
+		const translateXAmount = i * (smallCubeSideLength + spacing * 2)
+		const translateYAmount = -12.5 //j * (smallCubeSideLength + spacing * 2)
+		stamps.push(
+			cuboid({
+				size: [smallCubeSideLength, smallCubeSideLength, smallCubeDepth],
+				center: [translateXAmount, translateYAmount, cubeZ],
+			}),
+		)
 	}
+	//}
 	const translateXAmount = -2.5 * (smallCubeSideLength + spacing * 2)
 	geos.push(
 		colorize(
-			hexToRgb('#00FF00'),
+			hexToRgb('#1F1C83'),
 			subtract(
 				// this is the base plate
 				cuboid({
 					size: [length, width, wallDepth],
-					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
+					center: [50, -0.75, wallDepth / 2],
 				}),
 				translate(
-					[translateXAmount, defaultTranslateValue, defaultTranslateValue],
+					[
+						translateXAmount,
+						smallCubeSideLength / 2 + 1.5,
+						defaultTranslateValue,
+					],
 					union(stamps),
 				),
 			),

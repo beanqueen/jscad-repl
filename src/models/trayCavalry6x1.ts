@@ -4,15 +4,15 @@ import { subtract, union } from '@jscad/modeling/src/operations/booleans'
 import { translate } from '@jscad/modeling/src/operations/transforms'
 import { cuboid } from '@jscad/modeling/src/primitives'
 
-const width = 125
-const length = 150
+const width = 60
+const length = 180
 const wallDepth = 5.25
 
 const cavalrySideLength = 24
 const cavalrySideWidth = 50
 const cavalryDepth = 3.5
 
-const countCavalry = 5
+const countCavalry = 6
 const sideSpacing = 2.25
 const defaultTranslateValue = 0
 const cubeZ =
@@ -25,19 +25,16 @@ export const codefreeze = (): Geom3[] => {
 	const geos: Geom3[] = []
 
 	const stamps: Geom3[] = []
-
-	for (let j = 0; j < 2; j++) {
-		for (let i = 0; i < countCavalry; i++) {
-			const translateXAmount = (i - 2) * (cavalrySideLength + sideSpacing * 2)
-			const x = j === 0 ? -cavalrySideWidth / 2 - 6 : -cavalrySideWidth / 2 + 3
-			const translateYAmount = x + j * (cavalrySideWidth + sideSpacing * 2)
-			stamps.push(
-				cuboid({
-					size: [cavalrySideLength, cavalrySideWidth, cavalryDepth],
-					center: [translateXAmount, translateYAmount, cubeZ],
-				}),
-			)
-		}
+	for (let i = 0; i < countCavalry; i++) {
+		const translateXAmount = i * (cavalrySideLength + sideSpacing * 2)
+		console.log(i, translateXAmount)
+		const translateYAmount = 0
+		stamps.push(
+			cuboid({
+				size: [cavalrySideLength, cavalrySideWidth, cavalryDepth],
+				center: [translateXAmount, translateYAmount, cubeZ],
+			}),
+		)
 	}
 	const translateXAmount = 0
 	geos.push(
@@ -47,7 +44,7 @@ export const codefreeze = (): Geom3[] => {
 				// this is the base plate
 				cuboid({
 					size: [length, width, wallDepth],
-					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
+					center: [71, defaultTranslateValue, wallDepth / 2],
 				}),
 				translate(
 					[translateXAmount, defaultTranslateValue, defaultTranslateValue],

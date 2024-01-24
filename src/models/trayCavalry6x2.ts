@@ -5,14 +5,14 @@ import { translate } from '@jscad/modeling/src/operations/transforms'
 import { cuboid } from '@jscad/modeling/src/primitives'
 
 const width = 125
-const length = 150
+const length = 180
 const wallDepth = 5.25
 
 const cavalrySideLength = 24
 const cavalrySideWidth = 50
 const cavalryDepth = 3.5
 
-const countCavalry = 5
+const countCavalry = 6
 const sideSpacing = 2.25
 const defaultTranslateValue = 0
 const cubeZ =
@@ -47,7 +47,7 @@ export const codefreeze = (): Geom3[] => {
 				// this is the base plate
 				cuboid({
 					size: [length, width, wallDepth],
-					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
+					center: [14, defaultTranslateValue, wallDepth / 2],
 				}),
 				translate(
 					[translateXAmount, defaultTranslateValue, defaultTranslateValue],

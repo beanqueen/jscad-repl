@@ -6,9 +6,9 @@ const width = 50
 const length = 74
 const wallDepth = 5.25
 
-const smallCubeSideLength = 22
+const smallCubeSideLength = 20.5
 const cubeDepth = 3.5
-const bigCubeSideLength = 41
+const bigCubeSideLength = 50
 
 const cubeZ =
 	// move it to Z=0
@@ -29,12 +29,12 @@ export const codefreeze = (): Geom3[] => {
 
 	const figure1 = cuboid({
 		size: [smallCubeSideLength, smallCubeSideLength, cubeDepth],
-		center: [-24.5, -12.5, cubeZ],
+		center: [-25, -12.5, cubeZ],
 	})
 
 	const figure2 = cuboid({
 		size: [smallCubeSideLength, smallCubeSideLength, cubeDepth],
-		center: [-24.5, 12.5, cubeZ],
+		center: [-25, 12.5, cubeZ],
 	})
 
 	const figure3 = cuboid({
