@@ -2,13 +2,13 @@ import { Geom3 } from '@jscad/modeling/src/geometries/types'
 import { subtract } from '@jscad/modeling/src/operations/booleans'
 import { cuboid } from '@jscad/modeling/src/primitives'
 
-const width = 50
-const length = 74
+const width = 55
+const length = 79
 const wallDepth = 5.25
 
 const smallCubeSideLength = 20.5
 const cubeDepth = 3.5
-const bigCubeSideLength = 50
+const bigCubeSideLength = 51
 
 const cubeZ =
 	// move it to Z=0
@@ -29,12 +29,12 @@ export const codefreeze = (): Geom3[] => {
 
 	const figure1 = cuboid({
 		size: [smallCubeSideLength, smallCubeSideLength, cubeDepth],
-		center: [-25, -12.5, cubeZ],
+		center: [-26.5, -15.2, cubeZ],
 	})
 
 	const figure2 = cuboid({
 		size: [smallCubeSideLength, smallCubeSideLength, cubeDepth],
-		center: [-25, 12.5, cubeZ],
+		center: [-26.5, 15.2, cubeZ],
 	})
 
 	const figure3 = cuboid({
