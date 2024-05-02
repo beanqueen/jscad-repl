@@ -8,7 +8,7 @@ const width = 100
 const length = 210
 const wallDepth = 5.25
 
-const smallCubeSideLength = 25.5
+const smallCubeSideLength = 25
 const smallCubeDepth = 3.5
 
 const countCubes = 7
@@ -46,7 +46,7 @@ export const codefreeze = (): Geom3[] => {
 					size: [length, width, wallDepth],
 					center: [defaultTranslateValue, defaultTranslateValue, wallDepth / 2],
 				}),
-				translate([-90, 0, defaultTranslateValue], union(stamps)),
+				translate([-88.5, 0, defaultTranslateValue], union(stamps)),
 			),
 		),
 	)
